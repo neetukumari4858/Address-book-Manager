@@ -1,38 +1,135 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root{
+  --primery-blue-color:#2874f0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+html{
+  font-size: 62.5%;
+}
+@media (max-width:998px) {
+  html{
+    font-size: 55%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@media (max-width:768px) {
+  html{
+    font-size: 45%;
+  }
+}
+.App {
+  text-align: center;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+
+/* input box */
+.container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center  ;
+  align-items: center;
+  gap: 2.4rem;
+
+}
+.contact_container{
+  height: 28rem;
+  width: 35rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  box-shadow: 1px 1px 4px 1px gainsboro;
+  
+}
+.heading_one{
+  font-size: 3rem;
+  margin-top: -2rem;
+}
+.input_box{
+  padding: 1rem 6rem; 
+  padding-left: 1rem;
+}
+.add_contact_btn{
+  padding: 1rem 11rem;
+  display: flex;
+  cursor: pointer; 
+  font-weight: 600;
+  gap: 0.5rem;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.input_container{
+  width: 26rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.7rem;
+
+}
+/* docontact_list_outerwn box*/
+
+.contact_list_outer{
+  width: 100%;
+  /* border: 1px solid ; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  gap: 2rem;
+}
+.see_contect_btn{
+  padding: 1.4rem 3rem;
+  background-color: var(--primery-blue-color);
+  border-radius: 0.3rem;
+  border: none;
   color: white;
+  font-weight: 900;
+
+}
+/* search */
+.topnav{
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
 }
 
-.App-link {
-  color: #61dafb;
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search_input{
+  padding: 1rem 5rem ;
+  padding-left: 1rem;
+}
+.fa-search{
+  padding: 1.1rem;
+  cursor: pointer;
+}
+/* item_div */
+.item_div{
+  height: 5rem;
+  width: 40rem;
+ border: 1px solid ;
+}
+.paragraph{
+  margin-left: 1rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
