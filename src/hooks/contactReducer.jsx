@@ -15,6 +15,15 @@ export const ContactReducer = (data, action) => {
         ...data,
         addContact: filteredData,
       };
+    case "EDIT_DATA":
+      const editIndexof = addContact.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      const editedcontact = (addContact[editIndexof] = action.payload);
+      return {
+        ...data,
+        editedcontact,
+      };
     default:
       return data;
   }

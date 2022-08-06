@@ -59,7 +59,7 @@ html{
   padding-left: 1rem;
 }
 .add_contact_btn{
-  padding: 1rem 11rem;
+  padding: 1rem;
   display: flex;
   cursor: pointer; 
   font-weight: 600;

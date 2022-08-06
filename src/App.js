@@ -3,19 +3,39 @@ import './App.css'
 import { Navbar } from './components/Navbar/Navbar'
 import { Showdata } from './components/showData'
 import { useContact } from './hooks/contactContext'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 function App() {
   const { data, dispatchData } = useContact()
   const [open, setOpen] = useState(false)
-  const [inputData, setInputdata] = useState({ name: '', number: '',id:uuidv4() })
+  const [inputData, setInputdata] = useState({
+    name: '',
+    number: '',
+  })
+  const [EditData, setEditData] = useState(null)
+
   const { name, number } = inputData
   const { addContact } = data
 
   const addContactHandler = () => {
-    if (name.trim().length > 1 && number.trim().length > 1) {
-      dispatchData({ type: 'ADD_DATA', payload: inputData })
-      setInputdata({ name: '', number: '' })
+    if (EditData) {
+      if (name.trim().length > 1 && number.trim().length > 1) {
+        dispatchData({ type: 'EDIT_DATA', payload: inputData })
+        setInputdata({ name: '', number: '' })
+        setEditData(null)
+      }
+    } else {
+      if (name.trim().length > 1 && number.trim().length > 1) {
+        dispatchData({
+          type: 'ADD_DATA',
+          payload: {
+            name: inputData.name,
+            number: inputData.number,
+            id: uuidv4(),
+          },
+        })
+        setInputdata({ name: '', number: '' })
+      }
     }
   }
 
@@ -51,7 +71,7 @@ function App() {
               value={addContact}
               onClick={addContactHandler}
             >
-              Add<span>Contact</span>
+              {!EditData ? ' Add Contact' : 'UpDate Contact'}
             </button>
           </div>
         </div>
@@ -63,7 +83,13 @@ function App() {
           >
             See Contacts
           </button>
-          {open ? <Showdata /> : null}
+          {open ? (
+            <Showdata
+              setInputdata={setInputdata}
+              EditData={EditData}
+              setEditData={setEditData}
+            />
+          ) : null}
         </div>
       </div>
     </div>
