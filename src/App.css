@@ -79,7 +79,6 @@ html{
 
 .contact_list_outer{
   width: 100%;
-  /* border: 1px solid ; */
   display: flex;
   flex-direction: column;
   align-items: center;  
@@ -92,6 +91,7 @@ html{
   border: none;
   color: white;
   font-weight: 900;
+  cursor: pointer;
 
 }
 /* search */
@@ -123,8 +123,11 @@ html{
 /* item_div */
 .item_div{
   height: 5rem;
-  width: 40rem;
+  width: 45rem;
  border: 1px solid ;
+ display: flex;
+ border-radius: 0.5rem;
+ justify-content: space-between;
 }
 .paragraph{
   margin-left: 1rem;
@@ -132,4 +135,18 @@ html{
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+.edit_div{
+  width: 8rem;
+  display: flex;
+  font-size: 2.5rem;
+  gap: 2.1rem;
+  align-items: center;
+}
+.icon{
+  cursor: pointer;
+}
+/*  */
+.showdata{
+  display: none;
 }

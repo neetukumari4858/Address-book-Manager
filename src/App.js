@@ -1,30 +1,24 @@
 import { useState } from 'react'
 import './App.css'
 import { Navbar } from './components/Navbar/Navbar'
-import {BsPencilSquare} from "react-icons/bs"
+import { Showdata } from './components/showData'
+import { useContact } from './hooks/contactContext'
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
-  // const [name,setName]=useState("")
-  // const [number,setNumber]=useState("")
+  const { data, dispatchData } = useContact()
+  const [open, setOpen] = useState(false)
+  const [inputData, setInputdata] = useState({ name: '', number: '',id:uuidv4() })
+  const { name, number } = inputData
+  const { addContact } = data
 
-  const [data,setData]=useState({
-    name:"",
-    number:""
-  })
-  const {name,number}=data
-  const [addContact,setAddContact]=useState([])
-  
-  const nameHandler=(e)=>{
-    setData({...data,name:e.target.value})
+  const addContactHandler = () => {
+    if (name.trim().length > 1 && number.trim().length > 1) {
+      dispatchData({ type: 'ADD_DATA', payload: inputData })
+      setInputdata({ name: '', number: '' })
+    }
   }
-  const numberHandler=(e)=>{
-    setData({...data,number:e.target.value})
-  }
-  const addContactHandler=()=>{
-    setAddContact([...addContact,data]) 
-    setData({...data, name:"",number:""})
 
-  }
   return (
     <div className="App">
       <Navbar />
@@ -32,36 +26,44 @@ function App() {
         <div className="contact_container">
           <h1 className="heading_one">Contacts</h1>
           <div className="input_container">
-            <input type="text" className="input_box" placeholder="Enter Name" value={name} onChange={nameHandler}/>
+            <input
+              type="text"
+              className="input_box"
+              placeholder="Enter Name"
+              value={name}
+              onChange={(e) =>
+                setInputdata({ ...inputData, name: e.target.value })
+              }
+            />
 
-            <input type="number" className="input_box" placeholder="Enter phone number" value={number} onChange={numberHandler} />
+            <input
+              type="number"
+              className="input_box"
+              placeholder="Enter phone number"
+              value={number}
+              onChange={(e) =>
+                setInputdata({ ...inputData, number: e.target.value })
+              }
+            />
 
-            <button className="add_contact_btn" value={addContact} onClick={addContactHandler}>
+            <button
+              className="add_contact_btn"
+              value={addContact}
+              onClick={addContactHandler}
+            >
               Add<span>Contact</span>
             </button>
           </div>
         </div>
         <div className="contact_list_outer">
-          <button className="see_contect_btn">See Contacts</button>
-          {/* search */}
-          <div class="search-container">
-            <input className='search_input' placeholder="Search.." name="search" />
-            <button>
-              <i className="fa fa-search"></i>
-            </button>
-          </div>
-          {/* show item */}
-          
-          {addContact.map(({name,number})=>{
-            return (
-              <div className='item_div'>
-              <p className='paragraph'>{name}<span>{number}</span></p>
-              <div>
-                <button> <BsPencilSquare /></button>
-              </div>
-                </div>
-            )
-          })}
+          <button
+            className="see_contect_btn"
+            value={open}
+            onClick={() => setOpen(!open)}
+          >
+            See Contacts
+          </button>
+          {open ? <Showdata /> : null}
         </div>
       </div>
     </div>
