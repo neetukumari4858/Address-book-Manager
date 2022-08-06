@@ -11,6 +11,7 @@ export const ContactReducer = (data, action) => {
       const filteredData = addContact.filter(
         (Item) => Item.id !== action.payload.id
       );
+
       return {
         ...data,
         addContact: filteredData,

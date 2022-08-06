@@ -14,23 +14,27 @@ function App() {
   })
   const [EditData, setEditData] = useState(null)
 
+  const openContactsHandle = () => {
+    setOpen(!open)
+  }
+
   const { name, number } = inputData
   const { addContact } = data
 
   const addContactHandler = () => {
     if (EditData) {
-      if (name.trim().length > 1 && number.trim().length > 1) {
+      if (name.trim().length > 0 && number.trim().length > 0) {
         dispatchData({ type: 'EDIT_DATA', payload: inputData })
         setInputdata({ name: '', number: '' })
         setEditData(null)
       }
     } else {
-      if (name.trim().length > 1 && number.trim().length > 1) {
+      if (name.trim().length > 0 && number.trim().length > 0) {
         dispatchData({
           type: 'ADD_DATA',
           payload: {
-            name: inputData.name,
-            number: inputData.number,
+            name: name,
+            number: number,
             id: uuidv4(),
           },
         })
@@ -79,7 +83,7 @@ function App() {
           <button
             className="see_contect_btn"
             value={open}
-            onClick={() => setOpen(!open)}
+            onClick={openContactsHandle}
           >
             See Contacts
           </button>
