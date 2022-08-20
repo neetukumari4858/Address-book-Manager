@@ -10,6 +10,8 @@ const Navbar = () => {
         href="https://github.com/neetukumari4858/address-book-manager"
         target="_blank"
         className="header_text_color"
+        rel="noreferrer"
+
       >
         <AiFillGithub />
       </a>
